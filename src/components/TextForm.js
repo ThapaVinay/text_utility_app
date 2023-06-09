@@ -8,13 +8,14 @@ export default function TextForm(props) {
         // console.log("Uppercase was clicked " + text);
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Converted to Uppercase ", "success")
         
     }
 
+    // needed to keep track of the changing text with each character entered
     const handleOnChange = (event) => {
         // console.log("On change ");
         setText(event.target.value)
-        props.showAlert("Converted to Uppercase ", "success")
     }
 
     const handleLoClick = () => {
@@ -43,16 +44,16 @@ export default function TextForm(props) {
     // setText("Enter text here");
     return (
         <>
-            <div className="container" style={{ color: props.mode === 'light' ? '#042743' : 'white' }}>
+            <div className="container" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
-                    <textarea className="form-control" value={text} onChange={handleOnChange} style={{ color: props.mode === 'dark' ? 'white' : '#042743', backgroundColor: props.mode === 'dark' ? "grey" : "white" }} id="myBox" rows="8" placeholder='Enter your text'></textarea>
+                    <textarea className="form-control" value={text} onChange={handleOnChange} style={{ color: props.mode === 'blue' ? 'white' : 'black', backgroundColor: props.mode === 'blue' ? "grey" : "white" }} id="myBox" rows="8" placeholder='Enter your text'></textarea>
                 </div>
                 <button className="btn btn-primary mx-1 " onClick={handleUpClick}> Convert to Uppercase</button>
                 <button className="btn btn-primary mx-1" onClick={handleLoClick}> Convert to Lowercase</button>
                 <button className="btn btn-primary mx-1" onClick={handleClearClick}> Clear Text</button>
             </div>
-            <div className="container my-3" style={{ color: props.mode === 'light' ? '#042743' : 'white' }}>
+            <div className="container my-3" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <h2>Your text summary</h2>
                 {/* count the number of words and characters */}
                 <p> {countWords()} words and {text.length} characters </p>

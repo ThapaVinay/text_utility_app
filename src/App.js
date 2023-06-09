@@ -16,16 +16,29 @@ function App() {
     })
     setTimeout( () => {
       setAlert(null)
-    },1500);
+    },2000);
   }
 
-  const toggleMode = () => {
-    if(mode === 'light')
+  const toggleMode = (m) => {
+    if(m === 'blue')
     {
-      setMode('dark');
+      setMode('blue');
       document.body.style.backgroundColor = '#042743';
-      showAlert("Dark mode has been enabled ", "success")
-    }else{
+      showAlert("Dark mode with blue background has been enabled ", "success")
+    }
+    else if(m === 'grey')
+    {
+      setMode('grey');
+      document.body.style.backgroundColor = 'grey';
+      showAlert("Dark mode with grey background has been enabled ", "success")
+    }
+    else if(m === 'green')
+    {
+      setMode('green');
+      document.body.style.backgroundColor = 'green';
+      showAlert("Dark mode with green background has been enabled ", "success")
+    }
+    else{
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert("Light mode has been enabled ", "success")
