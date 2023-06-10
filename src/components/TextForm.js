@@ -30,13 +30,18 @@ export default function TextForm(props) {
     }
 
     const countWords = () => {
-        let list = text.trim().split(" ");
+        let list = text.trim().split("\n");
+        console.log(list);
         let count = 0;
-        for (let i = 0; i < list.length; i++) {
-            if (list[i] !== "") {
-                count++;
+        for(let li of list)
+        {
+            let list1 = li.trim().split(" ");
+            for (let i = 0; i < list1.length; i++) {
+                if (list1[i] !== "") {
+                    count++;
+                }
             }
-        }
+        }      
         return count;
     }
 
@@ -45,13 +50,13 @@ export default function TextForm(props) {
     return (
         <>
             <div className="container" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
-                <h1>{props.heading}</h1>
+                <h1 className = "mb-3"> <strong>{props.heading}</strong></h1>
                 <div className="mb-3">
                     <textarea className="form-control" value={text} onChange={handleOnChange} style={{ color: props.mode === 'blue' ? 'white' : 'black', backgroundColor: props.mode === 'blue' ? "grey" : "white" }} id="myBox" rows="8" placeholder='Enter your text'></textarea>
                 </div>
-                <button className="btn btn-primary mx-1 " onClick={handleUpClick}> Convert to Uppercase</button>
-                <button className="btn btn-primary mx-1" onClick={handleLoClick}> Convert to Lowercase</button>
-                <button className="btn btn-primary mx-1" onClick={handleClearClick}> Clear Text</button>
+                <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}> Convert to Uppercase</button>
+                <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}> Convert to Lowercase</button>
+                <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}> Clear Text</button>
             </div>
             <div className="container my-3" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <h2>Your text summary</h2>
@@ -59,7 +64,7 @@ export default function TextForm(props) {
                 <p> {countWords()} words and {text.length} characters </p>
                 <p> {0.008 * countWords()} minutes to read</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length > 0 ? text : "Entered text will appear here !"}</p>
             </div>
         </>
     )
