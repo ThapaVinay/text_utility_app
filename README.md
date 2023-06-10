@@ -1,5 +1,4 @@
 
-Link : https://ThapaVinay.github.io/text_utility_app
 
 This is a basic react app which allows user to enter text and manipulate it and provide the following utilities:
 
